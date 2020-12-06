@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <form method="post" action="/spring_crudsecurity_war_exploded/login">
+        <input type="text" id="username" name="username"/>
+        <input type="text" id="password" name="password"/>
+        <input type="submit"/>
+    </form>
+    <form th:action="@{/registration}" method="get">
+        <button type="submit">registration</button>
+    </form>
+
+</div>
+</body>
+</html>

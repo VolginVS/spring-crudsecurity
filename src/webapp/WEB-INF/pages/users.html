@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Roles</th>
+            <th>e-mail</th>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td><a th:href="@{user-edit/{id}(id=${user.id})}">Edit</a></td>
+            <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+</br>
+</br>
+<form action="#" th:action="@{/user-create}" th:object="${user}"method="post">
+    <table>
+        <tr>
+            <td><label for="username">name:</label></td>
+            <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
+        </tr>
+        <tr>
+            <td><label for="password">password:</label></td>
+            <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="create user"></td>
+        </tr>
+    </table>
+
+</form>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sign Out</button>
+</form>
+</body>
+</html>
+
+
+
