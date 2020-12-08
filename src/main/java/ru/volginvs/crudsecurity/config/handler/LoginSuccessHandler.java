@@ -35,15 +35,15 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         authorities.forEach(authority -> {
-            if(authority.getAuthority().equals("ROLE_USER")) {
+            if(authority.getAuthority().equals("ROLE_ADMIN")) {
                 try {
-                    redirectStrategy.sendRedirect(arg0, arg1, "/welcome");
+                    redirectStrategy.sendRedirect(arg0, arg1, "/admin");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else if(authority.getAuthority().equals("ROLE_ADMIN")) {
+            } else if(authority.getAuthority().equals("ROLE_USER")) {
                 try {
-                    redirectStrategy.sendRedirect(arg0, arg1, "/users");
+                    redirectStrategy.sendRedirect(arg0, arg1, "/user");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

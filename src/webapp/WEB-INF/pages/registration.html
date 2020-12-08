@@ -12,16 +12,38 @@
     <form action="#" th:action="@{/registration}" th:object="${userForm}"method="post">
         <table>
             <tr>
-                <td><label for="username">name:</label></td>
+                <td><label for="username">Name:</label></td>
                 <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
             </tr>
             <tr>
-                <td><label for="password">password:</label></td>
+                <td><label for="password">Password:</label></td>
                 <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
             </tr>
             <tr>
+                <td><p>-------------</p></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><label for="firstName">First Name:</label></td>
+                <td><input type="text" th:field="*{firstName}" id="firstName" placeholder="firstname"></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name:</label></td>
+                <td><input type="text" th:field="*{lastName}" id="lastName" placeholder="lastname"></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td><input type="text" th:field="*{age}" id="age" placeholder="age"></td>
+            </tr>
+            <tr>
+                <td><label for="email">E-mail:</label></td>
+                <td><input type="text" th:field="*{email}" id="email" placeholder="email"></td>
+            </tr>
+
+            <tr>
                 <td><input type="submit" value="create user"></td>
             </tr>
+
         </table>
     </form>
 </div>

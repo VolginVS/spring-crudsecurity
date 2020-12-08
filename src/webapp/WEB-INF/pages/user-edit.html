@@ -6,17 +6,56 @@
 </head>
 <body>
 <form action="#" th:action="@{/user-edit}" th:object="${user}" method="post">
-    <label for="id">id</label>
-    <input type="text" th:field="*{id}" id="id" placeholder="id">
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="First Name">
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <label for="age">Age</label>
-    <input type="text" th:field="*{age}" id="age" placeholder="Age">
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="E-Mail">
-    <input type="submit" value="Update User">
+    <input type="hidden" th:field="*{id}" id="id" placeholder="id">
+    <table>
+        <tr>
+            <td><label for="username">username</label></td>
+            <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
+        </tr>
+        <tr>
+            <td><label for="password">password</label></td>
+            <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
+        </tr>
+        <tr>
+            <td><label for="firstName">firstName</label></td>
+            <td><input type="text" th:field="*{firstName}" id="firstName" placeholder="firstname"></td>
+        </tr>
+        <tr>
+            <td><label for="lastName">lastName</label></td>
+            <td><input type="text" th:field="*{lastName}" id="lastName" placeholder="lastname"></td>
+        </tr>
+        <tr>
+            <td><label for="age">Age</label></td>
+            <td><input type="text" th:field="*{age}" id="age" placeholder="Age"></td>
+        </tr>
+        <tr>
+            <td><label for="email">email</label></td>
+            <td><input type="text" th:field="*{email}" id="email" placeholder="E-Mail"></td>
+        </tr>
+        <tr>
+            <td><p>role</p></td>
+            <td th:text="${user.roles}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <select name="role" id="role" multiple>
+                    <option value="ROLE_ADMIN">ADMIN</option>
+                    <option value="ROLE_USER">USER</option>
+                </select>
+            </td>
+        <tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+    <table>
+        <tr th:each="role : ${rolesSet}">
+            <td></td>
+            <td th:text="${role.name}"></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

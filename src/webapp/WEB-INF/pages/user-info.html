@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+<!--form action="#" th:action="@{/user}" th:object="${user}" method="get"-->
+    <table border="1">
+        <tr>
+            <td>Username</td>
+            <td th:text="${user.username}"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td th:text="${user.password}"></td>
+        </tr>
+        <tr>
+            <td>Firstname</td>
+            <td th:text="${user.firstName}"></td>
+        </tr>
+        <tr>
+            <td>Lastname</td>
+            <td th:text="${user.lastName}"></td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td th:text="${user.age}"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td th:text="${user.email}"></td>
+        </tr>
+        <tr>
+            <td>Roles</td>
+            <td th:text="${user.roles}"></td>
+        </tr>
+
+    </table>
+
+<!--td>
+    <th:block th:each="role : ${rolesList}">
+        <p th:text="${role.name}"></p>
+    </th:block>
+</td-->
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sign Out</button>
+</form>
+</body>
+</html>
