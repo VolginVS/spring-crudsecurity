@@ -13,17 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
-//@Component
-//public class LoginSuccessHandler implements AuthenticationSuccessHandler {
-//
-//    @Override
-//    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
-//                                        HttpServletResponse httpServletResponse,
-//                                        Authentication authentication) throws IOException, ServletException {
-//        httpServletResponse.sendRedirect("users");
-//    }
-//}
-
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -51,7 +40,5 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                 throw new IllegalStateException();
             }
         });
-
     }
-
 }

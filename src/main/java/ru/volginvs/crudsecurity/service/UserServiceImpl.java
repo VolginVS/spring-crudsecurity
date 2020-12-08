@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public void update(User user) {
-        //setUserRoles(user);
         userDao.update(user);
     }
 
@@ -63,7 +62,6 @@ public class UserServiceImpl implements UserService{
     public void removeById(Long id) {
         userDao.removeById(id);
     }
-
 
     @Transactional
     @Override
