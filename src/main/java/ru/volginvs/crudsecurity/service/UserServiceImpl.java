@@ -60,11 +60,6 @@ public class UserServiceImpl implements UserService{
     }
 
     // ??? ты присераешь role к POJO объекту, но при этом не записываешь ее в базу данных
-    @Override
-    @Transactional
-    public void addRoleToUserByRoleName(User user, String rolename) {
-        Role role = roleDao.getByName(rolename);
-        user.addRole(role);
-    }
+
     
 }

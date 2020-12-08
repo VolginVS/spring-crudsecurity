@@ -3,32 +3,26 @@ package ru.volginvs.crudsecurity.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import ru.volginvs.crudsecurity.model.Role;
 import ru.volginvs.crudsecurity.model.User;
 import ru.volginvs.crudsecurity.service.RoleService;
 import ru.volginvs.crudsecurity.service.UserService;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Controller
 public class UserController {
-
+   // http://localhost:8080/spring_crudsecurity_war_exploded/
     @Autowired
     private UserService userService;
 
     @Autowired
     private RoleService roleService;
 
-//---------------------------------------------------------
+
     @GetMapping(value = {"/", "/welcome"})
     public String welcome(Model model) {
         return "welcome";
@@ -59,12 +53,11 @@ public class UserController {
 
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("userForm") User userForm) {
-        userService.addRoleToUserByRoleName(userForm,"ROLE_USER");
+        roleService.addRoleToUserByRoleName(userForm,"ROLE_USER");
         userService.save(userForm);
         return "redirect:/login";
     }
 
-//------------------------------------------------
     @GetMapping(value = "user")
     public String getUserInfo(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

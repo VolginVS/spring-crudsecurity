@@ -1,5 +1,6 @@
 package ru.volginvs.crudsecurity.model;
 
+import com.sun.istack.internal.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,14 +14,11 @@ public class User implements UserDetails{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = true, unique = true)
     private String username;
 
-    @Column
+    @Column(nullable = true)
     private String password;
-
-    @Transient
-    private String confirmPassword;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -52,7 +50,6 @@ public class User implements UserDetails{
         this.age = age;
         this.email = email;
         this.roles = new LinkedHashSet<>(Arrays.asList(roles));
-
     }
 
     public Long getId() {
@@ -63,12 +60,22 @@ public class User implements UserDetails{
         this.id = id;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Role> getRoles() {
@@ -78,12 +85,6 @@ public class User implements UserDetails{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-    public void addRole(Role role){
-        roles.add(role);
-    }
-
-    public String getRolesToString(){ return roles.toString();}
 
     public String getFirstName() {
         return firstName;
@@ -123,16 +124,6 @@ public class User implements UserDetails{
     }
 
     @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -161,14 +152,6 @@ public class User implements UserDetails{
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     @Override

@@ -16,8 +16,8 @@ public class RoleFormatter implements Formatter<Role> {
     }
 
     @Override
-    public Role parse(String s, Locale locale) throws ParseException {
-        return entityManager.find(Role.class, Long.parseLong(s));
+    public Role parse(String stringWithId, Locale locale) throws ParseException {
+        return entityManager.find(Role.class, Long.parseLong(stringWithId));
     }
 
     @Override
