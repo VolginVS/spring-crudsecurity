@@ -13,5 +13,4 @@ public interface UserService {
     void removeById(Long id);
     User getByUsername(String username);
     void addRoleToUserByRoleName(User user, String rolename);
-    User editRoleSet(User user, String rolename);
 }

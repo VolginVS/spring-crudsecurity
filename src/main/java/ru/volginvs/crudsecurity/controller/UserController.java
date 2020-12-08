@@ -28,16 +28,14 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-
-
 //---------------------------------------------------------
+    @GetMapping(value = {"/", "/welcome"})
+    public String welcome(Model model) {
+        return "welcome";
+    }
+
     @GetMapping(value = "/login")
     public String getLoginPage(Model model) {
-        //User user = userService.getUserById(1L);
-        //model.addAttribute("user", user);
         return "login";
     }
 
@@ -50,29 +48,20 @@ public class UserController {
         if (logout != null) {
             model.addAttribute("message", "Logged out successfully.");
         }
-
         return "login";
     }
 
     @GetMapping(value = "/registration")
     public String getRegistrationPage(Model model) {
         model.addAttribute("userForm", new User());
-
         return "registration";
     }
 
     @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, Model model) {
-
+    public String registration(@ModelAttribute("userForm") User userForm) {
         userService.addRoleToUserByRoleName(userForm,"ROLE_USER");
         userService.save(userForm);
-
-        return "redirect:/welcome";
-    }
-
-    @GetMapping(value = {"/", "/welcome"})
-    public String welcome(Model model) {
-        return "welcome";
+        return "redirect:/login";
     }
 
 //------------------------------------------------
@@ -86,7 +75,6 @@ public class UserController {
         return "user-info";
     }
 
-
     @GetMapping(value = "admin")
     public String getAdminCrudTool(Model model, User user) {
         List<User> userList = userService.getUserList();
@@ -95,7 +83,7 @@ public class UserController {
     }
 
     @PostMapping(value = "user-create")
-    public String createUser(User user) {
+    public String createUser(@ModelAttribute("user") User user) {
         userService.save(user);
         return "redirect:/admin";
     }
@@ -103,22 +91,11 @@ public class UserController {
     @GetMapping(value = "user-edit/{id}")
     public String getUserEditPage(@PathVariable("id") Long id, Model model) {
         User user = userService.getUserById(id);
-       // List<Role> userRoles = new ArrayList(user.getRoles());
-       // List<Role> roleSet = new ArrayList<>(roleService.getAllRoles());
         Set<Role> roleSet = roleService.getAllRoles();
-
         model.addAttribute("user", user);
         model.addAttribute("roleSet", roleSet);
         return "user-edit";
     }
-
-//    @PostMapping(value = "user-edit-edit-admin-role")
-//    public String editUserRole(User user, Model model) {
-//        User userEdited = userService.editAdminRole(user);
-//        Long id = userEdited.getId();
-//        model.addAttribute("user", userEdited);
-//        return "user-edit/{id}";
-//    }
 
     @PostMapping(value = "user-edit")
     public String editUser(@ModelAttribute("user") User user) {

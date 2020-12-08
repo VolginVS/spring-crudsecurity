@@ -1,7 +1,5 @@
 package ru.volginvs.crudsecurity.dao;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.volginvs.crudsecurity.model.User;
 import javax.persistence.EntityManager;

@@ -23,19 +23,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private RoleDao roleDao;
 
-    @Transactional
-    public void setUserRoles(User user) {
-        user.setRoles(user
-                .getRoles()
-                .stream()
-                .map(role -> roleDao.getByName(role.getName()))
-                .collect(Collectors.toSet()));
-    }
-
     @Override
     @Transactional
     public void save(User user) {
-        setUserRoles(user); // Проверить, работает ли оно? Нужно ли вообще оно?
         userDao.save(user);
     }
 
@@ -76,22 +66,5 @@ public class UserServiceImpl implements UserService{
         Role role = roleDao.getByName(rolename);
         user.addRole(role);
     }
-
-    @Override
-    @Transactional
-    public User editRoleSet(User user, String rolename) {
-        setUserRoles(user);
-        Set<Role> roles = user.getRoles();
-        if (roles.contains(roleDao.getByName("ROLE_ADMIN"))) {
-            if (rolename.equals("ROLE_USER")) {
-                //roles.remove(roleDao.getByName("ROLE_ADMIN"));
-            }
-        } else {
-            if (rolename.equals("ROLE_ADMIN")) {
-                roles.add(roleDao.getByName("ROLE_ADMIN"));
-            }
-        }
-       // update(user);
-        return user;
-    }
+    
 }

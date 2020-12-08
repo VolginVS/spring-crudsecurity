@@ -16,7 +16,10 @@
             <th>E-Mail</th>
             <th>Firstname</th>
             <th>LastName</th>
+            <th>Age</th>
             <th>Roles</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <tr th:each="user : ${userList}">
             <td th:text="${user.getId()}"></td>
