@@ -68,4 +68,6 @@ public class HibernateJPAConfig {
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
     }
+
+
 }

@@ -4,10 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -28,7 +25,7 @@ public class User implements UserDetails{
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles = new LinkedHashSet<>();
 
     @Column
     private String firstName;
@@ -54,7 +51,8 @@ public class User implements UserDetails{
         this.lastName = lastName;
         this.age = age;
         this.email = email;
-        this.roles = new HashSet<Role>(Arrays.asList(roles));
+        this.roles = new LinkedHashSet<>(Arrays.asList(roles));
+
     }
 
     public Long getId() {
@@ -171,5 +169,24 @@ public class User implements UserDetails{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) &&
+                username.equals(user.username) &&
+                password.equals(user.password) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(age, user.age) &&
+                Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, firstName, lastName, age, email);
     }
 }

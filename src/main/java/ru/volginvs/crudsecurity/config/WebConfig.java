@@ -4,12 +4,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import ru.volginvs.crudsecurity.config.formatter.RoleFormatter;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Configuration
 @EnableWebMvc
@@ -17,6 +22,9 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 public class WebConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public WebConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -45,4 +53,10 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
     }
+
+    @Override
+    public void addFormatters(FormatterRegistry formatterRegistry) {
+        formatterRegistry.addFormatter(new RoleFormatter(entityManager));
+    }
 }
+

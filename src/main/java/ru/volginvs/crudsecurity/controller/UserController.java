@@ -103,11 +103,12 @@ public class UserController {
     @GetMapping(value = "user-edit/{id}")
     public String getUserEditPage(@PathVariable("id") Long id, Model model) {
         User user = userService.getUserById(id);
-        List<Role> userRoles = new ArrayList(user.getRoles());
-        List<Role> roleSet = new ArrayList<>(roleService.getAllRoles());
+       // List<Role> userRoles = new ArrayList(user.getRoles());
+       // List<Role> roleSet = new ArrayList<>(roleService.getAllRoles());
+        Set<Role> roleSet = roleService.getAllRoles();
+
         model.addAttribute("user", user);
         model.addAttribute("roleSet", roleSet);
-        model.addAttribute("userRoles",userRoles);
         return "user-edit";
     }
 

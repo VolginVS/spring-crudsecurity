@@ -32,30 +32,18 @@
             <td><label for="email">email</label></td>
             <td><input type="text" th:field="*{email}" id="email" placeholder="E-Mail"></td>
         </tr>
-        <tr>
-            <td><p>role</p></td>
-            <td th:text="${user.roles}"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <select name="role" id="role" multiple>
-                    <option value="ROLE_ADMIN">ADMIN</option>
-                    <option value="ROLE_USER">USER</option>
-                </select>
-            </td>
-        <tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"></td>
-        </tr>
     </table>
-    <table>
-        <tr th:each="role : ${rolesSet}">
-            <td></td>
-            <td th:text="${role.name}"></td>
-        </tr>
-    </table>
+    <ul>
+        <li th:each="role : ${roleSet}">
+            <div>
+                <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+                <label th:text="${role.name}"></label>
+            </div>
+        </li>
+    </ul>
+    <div>
+        <input type="submit" value="Update">
+    </div>
 </form>
 </body>
 </html>
