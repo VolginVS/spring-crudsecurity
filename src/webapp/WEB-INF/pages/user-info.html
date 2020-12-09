@@ -5,7 +5,7 @@
     <title>Create user</title>
 </head>
 <body>
-<!--form action="#" th:action="@{/user}" th:object="${user}" method="get"-->
+    <h2>User info</h2>
     <table border="1">
         <tr>
             <td>Username</td>
@@ -37,12 +37,7 @@
         </tr>
 
     </table>
-
-<!--td>
-    <th:block th:each="role : ${rolesList}">
-        <p th:text="${role.name}"></p>
-    </th:block>
-</td-->
+</br>
 <form th:action="@{/logout}" method="post">
     <button type="submit">Sign Out</button>
 </form>

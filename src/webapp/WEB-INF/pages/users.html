@@ -8,6 +8,8 @@
 </head>
 <body>
 <div>
+    <h1>Admin cabinet</h1>
+    <h2>List of users</h2>
     <table border="1">
         <tr>
             <th>Id</th>
@@ -35,41 +37,47 @@
         </tr>
     </table>
 </div>
-</br>
-</br>
-<form action="#" th:action="@{/user-create}" th:object="${user}"method="post">
-    <table>
-            <tr>
-                <td><label for="username">Name:</label></td>
-                <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
-            </tr>
-            <tr>
-                <td><label for="password">Password:</label></td>
-                <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
-            </tr>
-            <tr>
-                <td><label for="firstName">First Name:</label></td>
-                <td><input type="text" th:field="*{firstName}" id="firstName" placeholder="firstname"></td>
-            </tr>
-            <tr>
-                <td><label for="lastName">Last Name:</label></td>
-                <td><input type="text" th:field="*{lastName}" id="lastName" placeholder="lastname"></td>
-            </tr>
-            <tr>
-                <td><label for="age">Age:</label></td>
-                <td><input type="text" th:field="*{age}" id="age" placeholder="age"></td>
-            </tr>
-            <tr>
-                <td><label for="email">E-mail:</label></td>
-                <td><input type="text" th:field="*{email}" id="email" placeholder="email"></td>
-            </tr>
+<h2>Create user</h2>
+<div>
+    <form action="#" th:action="@{/user-create}" th:object="${user}"method="post">
+        <table>
+                <tr>
+                    <td><label for="username">Name:</label></td>
+                    <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
+                </tr>
+                <tr>
+                    <td><p>-------------</p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label for="firstName">First Name:</label></td>
+                    <td><input type="text" th:field="*{firstName}" id="firstName" placeholder="firstname"></td>
+                </tr>
+                <tr>
+                    <td><label for="lastName">Last Name:</label></td>
+                    <td><input type="text" th:field="*{lastName}" id="lastName" placeholder="lastname"></td>
+                </tr>
+                <tr>
+                    <td><label for="age">Age:</label></td>
+                    <td><input type="text" th:field="*{age}" id="age" placeholder="age"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">E-mail:</label></td>
+                    <td><input type="text" th:field="*{email}" id="email" placeholder="email"></td>
+                </tr>
 
-            <tr>
-                <td><input type="submit" value="create user"></td>
-            </tr>
-    </table>
-
-</form>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="create user"></td>
+                </tr>
+        </table>
+    </form>
+</div>
+<br>
 <form th:action="@{/logout}" method="post">
     <button type="submit">Sign Out</button>
 </form>

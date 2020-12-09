@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Controller
 public class UserController {
-   // http://localhost:8080/spring_crudsecurity_war_exploded/
+
     @Autowired
     private UserService userService;
 
@@ -30,18 +30,6 @@ public class UserController {
 
     @GetMapping(value = "/login")
     public String getLoginPage(Model model) {
-        return "login";
-    }
-
-    @PostMapping(value = "/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null) {
-            model.addAttribute("error", "Username or password is incorrect.");
-        }
-
-        if (logout != null) {
-            model.addAttribute("message", "Logged out successfully.");
-        }
         return "login";
     }
 

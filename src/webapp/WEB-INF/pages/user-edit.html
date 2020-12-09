@@ -5,45 +5,46 @@
     <title>Create user</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-edit}" th:object="${user}" method="post">
-    <input type="hidden" th:field="*{id}" id="id" placeholder="id">
-    <table>
-        <tr>
-            <td><label for="username">username</label></td>
-            <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
-        </tr>
-        <tr>
-            <td><label for="password">password</label></td>
-            <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
-        </tr>
-        <tr>
-            <td><label for="firstName">firstName</label></td>
-            <td><input type="text" th:field="*{firstName}" id="firstName" placeholder="firstname"></td>
-        </tr>
-        <tr>
-            <td><label for="lastName">lastName</label></td>
-            <td><input type="text" th:field="*{lastName}" id="lastName" placeholder="lastname"></td>
-        </tr>
-        <tr>
-            <td><label for="age">Age</label></td>
-            <td><input type="text" th:field="*{age}" id="age" placeholder="Age"></td>
-        </tr>
-        <tr>
-            <td><label for="email">email</label></td>
-            <td><input type="text" th:field="*{email}" id="email" placeholder="E-Mail"></td>
-        </tr>
-    </table>
-    <ul>
-        <li th:each="role : ${roleSet}">
-            <div>
-                <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
-                <label th:text="${role.name}"></label>
-            </div>
-        </li>
-    </ul>
-    <div>
-        <input type="submit" value="Update">
-    </div>
-</form>
+    <h2>User edit</h2>
+    <form action="#" th:action="@{/user-edit}" th:object="${user}" method="post">
+        <input type="hidden" th:field="*{id}" id="id" placeholder="id">
+        <table>
+            <tr>
+                <td><label for="username">username</label></td>
+                <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
+            </tr>
+            <tr>
+                <td><label for="password">password</label></td>
+                <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
+            </tr>
+            <tr>
+                <td><label for="firstName">firstName</label></td>
+                <td><input type="text" th:field="*{firstName}" id="firstName" placeholder="firstname"></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">lastName</label></td>
+                <td><input type="text" th:field="*{lastName}" id="lastName" placeholder="lastname"></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age</label></td>
+                <td><input type="text" th:field="*{age}" id="age" placeholder="Age"></td>
+            </tr>
+            <tr>
+                <td><label for="email">email</label></td>
+                <td><input type="text" th:field="*{email}" id="email" placeholder="E-Mail"></td>
+            </tr>
+        </table>
+        <ul>
+            <li th:each="role : ${roleSet}">
+                <div>
+                    <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+                    <label th:text="${role.name}"></label>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" value="Update">
+        </div>
+    </form>
 </body>
 </html>
